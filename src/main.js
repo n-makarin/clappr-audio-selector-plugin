@@ -73,7 +73,11 @@ export default class LevelSelector extends UICorePlugin {
     if (this.shouldRender()) {
       var style = Styler.getStyleFor(pluginStyle, {baseUrl: this.core.options.baseUrl})
 
-      this.$el.html(this.template({'tracks':this.tracks, 'title': this.getTitle()}))
+      this.$el.html(this.template({ 
+        'tracks': this.tracks, 
+        'title': this.getTitle(),
+        'getLangFromTrackName': this.getLangFromTrackName
+      }))
       this.$el.append(style)
       this.core.mediaControl.$('.media-control-right-panel').append(this.el)
       this.highlightCurrentTrack()
@@ -126,7 +130,8 @@ export default class LevelSelector extends UICorePlugin {
 
   updateText() {
     if (this.current != null && this.tracks[this.current]) {
-      this.buttonElement().text(this.tracks[this.current].name)
+      var lang = this.getLangFromTrackName(this.tracks[this.current].name)
+      this.buttonElement().text(lang || this.tracks[this.current].lang);
     }
   }
 
@@ -146,5 +151,13 @@ export default class LevelSelector extends UICorePlugin {
       }
     }
     return index;
+  }
+
+  getLangFromTrackName(trackName) {
+    var lang = trackName.split(' ')[0]
+    if (!lang) { return ''; }
+
+    lang = lang.replace('"', '')
+    return lang;
   }
 }
