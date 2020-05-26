@@ -75,8 +75,7 @@ export default class LevelSelector extends UICorePlugin {
 
       this.$el.html(this.template({ 
         'tracks': this.tracks, 
-        'title': this.getTitle(),
-        'getLangFromTrackName': this.getLangFromTrackName
+        'title': this.getTitle()
       }))
       this.$el.append(style)
       this.core.mediaControl.$('.media-control-right-panel').append(this.el)
