@@ -1,32 +1,26 @@
 {
-  "name": "audio-selector",
+  "name": "clappr-audio-selector-plugin",
   "description": "A hacked version of level-selector for Clappr that adds support to manually select between HLS alternate audio tracks.",
   "version": "0.1.10",
   "license": "MIT",
-  "repository": "snaptv/clappr-audio-selector-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snaptv/clappr-audio-selector-plugin.git"
+  },
   "main": "dist/audio-selector.js",
   "scripts": {
-    "release": "node_modules/.bin/webpack --progress -d --optimize-minimize --optimize-dedupe --output-filename audio-selector.min.js",
-    "build": "node_modules/.bin/webpack --progress",
-    "watch": "node_modules/.bin/webpack --progress --watch",
+    "release": "webpack --progress -d --optimize-minimize --optimize-dedupe --output-filename audio-selector.min.js",
+    "build": "webpack --progress",
+    "watch": "webpack --progress --watch",
     "test": "karma start --single-run --browsers Chrome",
-    "start": "node_modules/.bin/webpack-dev-server --content-base public/ --output-public-path /latest --hot",
+    "start": "webpack-dev-server --content-base public/ --output-public-path /latest --hot",
     "lock": "rm -rf npm-shrinkwrap.json node_modules && npm install --silent && npm shrinkwrap"
   },
-  "author": {
-    "name": "Lucas Mundim",
-    "email": "lucas.mundim@gmail.com",
-    "url": "https://github.com/lucasmundim"
-  },
+  "author": "Lucas Mundim <lucas.mundim@gmail.com> (https://github.com/lucasmundim)",
   "contributors": [
-    {
-      "name": "Flávio Ribeiro",
-      "email": "email@flavioribeiro.com"
-    },
-    {
-      "name": "Bruno Torres",
-      "email": "me@brunotorr.es"
-    }
+    "Flávio Ribeiro <email@flavioribeiro.com>",
+    "Bruno Torres <me@brunotorr.es>"
+    "Nikita Makarin <n.makarin@gmail.com>"
   ],
   "keywords": [
     "clappr",
@@ -46,5 +40,9 @@
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/snaptv/clappr-audio-selector-plugin/issues"
+  },
+  "homepage": "https://github.com/snaptv/clappr-audio-selector-plugin#readme"
 }
