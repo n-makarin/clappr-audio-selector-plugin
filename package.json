@@ -16,11 +16,11 @@
     "start": "webpack-dev-server --content-base public/ --output-public-path /latest --hot",
     "lock": "rm -rf npm-shrinkwrap.json node_modules && npm install --silent && npm shrinkwrap"
   },
-  "author": "Lucas Mundim <lucas.mundim@gmail.com> (https://github.com/lucasmundim)",
+  "author": "Nikita Makarin <zn.makarin@gmail.com> (https://github.com/n-makarin)",
   "contributors": [
     "Flávio Ribeiro <email@flavioribeiro.com>",
     "Bruno Torres <me@brunotorr.es>",
-    "Nikita Makarin <n.makarin@gmail.com>"
+    "Nikita Makarin <zn.makarin@gmail.com>"
   ],
   "keywords": [
     "clappr",
@@ -44,5 +44,5 @@
   "bugs": {
     "url": "https://github.com/snaptv/clappr-audio-selector-plugin/issues"
   },
-  "homepage": "https://github.com/snaptv/clappr-audio-selector-plugin#readme"
+  "homepage": "https://github.com/n-makarin/clappr-audio-selector-plugin"
 }
