@@ -1,15 +1,12 @@
-<button data-audio-selector-button>
-  Auto
-</button>
+<button data-audio-selector-button></button>
 <ul>
-  <li data-title><%= title %></li>  <% }; %>  
-
   <% var langList = []; %>
 
   <% for (var i = 0; i < tracks.length; i++) { %>    
 
     <% var track = tracks[i]; %>
-    <% var lang = getLangFromTrackName(track.name); %>
+    <% var lang = track.split(' ')[0]; %> 
+    <% lang = lang ? lang.replace('"', '') : ''; %> 
     
     <% if (track && lang && !langList.includes(lang) ) { %>  
       <% langList.push(lang); %>
