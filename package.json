@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/snaptv/clappr-audio-selector-plugin.git"
+    "url": "git+https://github.com/n-makarin/clappr-audio-selector-plugin"
   },
   "main": "dist/audio-selector.js",
   "scripts": {
