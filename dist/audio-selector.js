@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ (function(module, exports) {
 
-	module.exports = "<button data-audio-selector-button></button>\n<ul>\n  <% var langList = []; %>\n\n  <% for (var i = 0; i < tracks.length; i++) { %>    \n\n    <% var track = tracks[i]; %>\n    <% var lang = track.split(' ')[0]; %> \n    <% lang = lang ? lang.replace('\"', '') : ''; %> \n    \n    <% if (track && lang && !langList.includes(lang) ) { %>  \n      <% langList.push(lang); %>\n      <li>\n        <a href=\"#\" data-audio-selector-select=\"<%= i %>\">\n          <%= lang %>\n        </a>\n      </li>  \n    <% }; %>\n    \n  <% }; %>\n\n</ul>\n";
+	module.exports = "<button data-audio-selector-button></button>\n<ul>\n  <% var langList = []; %>\n\n  <% for (var i = 0; i < tracks.length; i++) { %>    \n\n    <% var track = tracks[i]; %>\n    <% var lang = track.name.split(' ')[0]; %> \n    <% lang = lang ? lang.replace('\"', '') : ''; %> \n    \n    <% if (track && lang && !langList.includes(lang) ) { %>  \n      <% langList.push(lang); %>\n      <li>\n        <a href=\"#\" data-audio-selector-select=\"<%= i %>\">\n          <%= lang %>\n        </a>\n      </li>  \n    <% }; %>\n    \n  <% }; %>\n\n</ul>\n";
 
 /***/ }),
 /* 4 */
