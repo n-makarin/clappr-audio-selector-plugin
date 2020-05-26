@@ -89,8 +89,12 @@ export default class LevelSelector extends UICorePlugin {
   fillTracks() {
     var hls = this.core.getCurrentPlayback()._hls
     if (hls) {
-      this.tracks = hls.audioTracks
-      this.current = hls.audioTrack
+      this.tracks = hls.audioTracks; 
+
+      var rusTrackIndex = this.getRusTrackIndex()
+      this.current = rusTrackIndex || 0;
+
+      hls.audioTrack = this.current; 
     }
   }
 
@@ -130,5 +134,17 @@ export default class LevelSelector extends UICorePlugin {
     this.trackElement().removeClass('current')
     this.current && this.trackElement(this.current).addClass('current')
     this.updateText()
+  }
+
+  getRusTrackIndex() {
+    var index;
+    for (var i = 0; i < this.tracks.length; i++) {
+      if (!this.tracks[i].lang) { continue; }
+      var trackLang = this.tracks[i].lang.toLowerCase()
+      if (trackLang === 'rus' || trackLang === 'ru' || trackLang === 'russian') { 
+        index = i
+      }
+    }
+    return index;
   }
 }
