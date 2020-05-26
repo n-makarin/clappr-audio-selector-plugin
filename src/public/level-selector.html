@@ -6,7 +6,7 @@
 
     <% var track = tracks[i]; %>
     <% var lang = track.name.split(' ')[0]; %> 
-    <% lang = lang ? lang.replace('"', '') : ''; %> 
+    <% lang = lang ? lang.replace('"', '') : (track.lang || ''); %> 
     
     <% if (track && lang && !langList.includes(lang) ) { %>  
       <% langList.push(lang); %>

@@ -143,10 +143,12 @@ export default class LevelSelector extends UICorePlugin {
   getRusTrackIndex() {
     var index;
     for (var i = 0; i < this.tracks.length; i++) {
-      if (!this.tracks[i].lang) { continue; }
-      var trackLang = this.tracks[i].lang.toLowerCase()
+      var trackLang = getLangFromTrackName(this.tracks[i].name)
+      trackLang = trackLang || this.tracks[i].lang
+
       if (trackLang === 'rus' || trackLang === 'ru' || trackLang === 'russian') { 
         index = i
+        break;
       }
     }
     return index;
