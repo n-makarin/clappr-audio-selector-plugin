@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ (function(module, exports) {
 
-	module.exports = "<button data-audio-selector-button></button>\n<ul>\n\n  <% for (var i = 0; i < tracks.length; i++) { %>    \n    <% var track = tracks[i]; %>\n    \n    <% if (track && track.name) { %>  \n      <% var quoteIndex = track.name.search('\"'); %>\n      <% var name = quoteIndex ? track.name.slice(0, quoteIndex) : track.name; %>\n      <li>\n        <a href=\"#\" data-audio-selector-select=\"<%= i %>\">\n          <%= name %>\n        </a>\n      </li>  \n    <% }; %>\n    \n  <% }; %>\n\n</ul>\n\n\nvar name = this.tracks[this.current].name\nthis.buttonElement().text(name ? name.slice(0, name.search('\"')) : '');";
+	module.exports = "<button data-audio-selector-button></button>\n<ul>\n\n  <% for (var i = 0; i < tracks.length; i++) { %>    \n    <% var track = tracks[i]; %>\n    \n    <% if (track && track.name) { %>  \n      <% var quoteIndex = track.name.search('\"'); %>\n      <% var name = quoteIndex ? track.name.slice(0, quoteIndex) : track.name; %>\n      <li>\n        <a href=\"#\" data-audio-selector-select=\"<%= i %>\">\n          <%= name %>\n        </a>\n      </li>  \n    <% }; %>\n    \n  <% }; %>\n\n</ul>\n";
 
 /***/ }),
 /* 4 */
