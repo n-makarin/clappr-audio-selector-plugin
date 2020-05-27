@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ (function(module, exports) {
 
-	module.exports = "<button data-audio-selector-button></button>\n<ul>\n\n  <% for (var i = 0; i < tracks.length; i++) { %>    \n    <% var track = tracks[i]; %>\n    \n    <% if (track && track.name) { %>  \n      <% langList.push(lang); %>\n      <li>\n        <a href=\"#\" data-audio-selector-select=\"<%= i %>\">\n          <%= track.name %>\n        </a>\n      </li>  \n    <% }; %>\n    \n  <% }; %>\n\n</ul>\n";
+	module.exports = "<button data-audio-selector-button></button>\n<ul>\n\n  <% for (var i = 0; i < tracks.length; i++) { %>    \n    <% var track = tracks[i]; %>\n    \n    <% if (track && track.name) { %>  \n      <li>\n        <a href=\"#\" data-audio-selector-select=\"<%= i %>\">\n          <%= track.name %>\n        </a>\n      </li>  \n    <% }; %>\n    \n  <% }; %>\n\n</ul>\n";
 
 /***/ }),
 /* 4 */
