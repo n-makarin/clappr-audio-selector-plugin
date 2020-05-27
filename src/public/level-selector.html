@@ -5,9 +5,10 @@
     <% var track = tracks[i]; %>
     
     <% if (track && track.name) { %>  
+      <% var quoteIndex = track.name.search('"'); %>
+      <% var name = quoteIndex ? track.name.slice(0, quoteIndex) : track.name; %>
       <li>
         <a href="#" data-audio-selector-select="<%= i %>">
-          <% var name = track.name.slice(0, track.name.search('"')); %>
           <%= name %>
         </a>
       </li>  
