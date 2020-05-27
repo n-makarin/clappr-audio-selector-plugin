@@ -93,11 +93,8 @@ export default class LevelSelector extends UICorePlugin {
     var hls = this.core.getCurrentPlayback()._hls
     if (hls) {
       this.tracks = hls.audioTracks; 
-
-      var rusTrackIndex = this.getRusTrackIndex()
-      this.current = rusTrackIndex || 0;
-
-      hls.audioTrack = this.current; 
+      this.setCurrentTrack();
+      this.setDefaultTrack();
     }
   }
 
@@ -127,27 +124,45 @@ export default class LevelSelector extends UICorePlugin {
 
   getTitle() { return (this.core.options.audioSelectorConfig || {}).title }
 
+  /**
+   * @returns void
+   */
   updateText() {
-    if (this.current != null && this.tracks[this.current]) {
-      var lang = this.getLangFromTrackName(this.tracks[this.current].name)
-      this.buttonElement().text(lang || this.tracks[this.current].lang);
+    if (this.current !== null && this.tracks[this.current]) {
+      this.buttonElement().text(this.tracks[this.current].name);
     }
   }
 
+  /**
+   * @returns void
+   */
   highlightCurrentTrack() {
     this.trackElement().removeClass('current')
     this.current && this.trackElement(this.current).addClass('current')
     this.updateText()
   }
 
-  getRusTrackIndex() {
-    var index;
-    for (var i = 0; i < this.tracks.length; i++) {
-      var trackLang = this.getLangFromTrackName(this.tracks[i].name)
-      trackLang = trackLang || this.tracks[i].lang
-      trackLang = trackLang ? trackLang.toLowerCase() : ''
+  /**
+   * @returns void
+   */
+  setCurrentTrack() {
+    this.current = this.getDefaultTrackIndex() || 0;
+  }
 
-      if (trackLang === 'rus' || trackLang === 'ru' || trackLang === 'russian') { 
+  /**
+   * @returns void
+   */
+  setDefaultTrack() {
+    hls.audioTrack = this.current; 
+  }
+
+  /**
+   * @returns number
+   */
+  getDefaultTrackIndex() {
+    var index = 0;
+    for (var i = 0; i < this.tracks.length; i++) {
+      if (this.isPositiveDefaultValue(this.tracks[i])) { 
         index = i
         break;
       }
@@ -155,11 +170,42 @@ export default class LevelSelector extends UICorePlugin {
     return index;
   }
 
-  getLangFromTrackName(trackName) {
-    var lang = trackName.split(' ')[0]
-    if (!lang) { return ''; }
+  /**
+   * @param {string} name 
+   * @returns string
+   */
+  getDefaultValueByTrackName(name) {
+    if (!name) { 
+      return ''; 
+    }
+    var defaultPropName = 'default=';
+    if (!name.toLowerCase().includes(defaultPropName)) {
+      return '';
+    }
+    var indexStart = name.search(defaultPropName);
+    var indexEnd = indexStart + defaultPropName.length;
+    return name.slice(indexStart, indexEnd);
+  }
 
-    lang = lang.replace('"', '')
-    return lang;
+  /**
+   * @param {object} track 
+   * @returns boolean
+   */
+  isPositiveDefaultValue(track) {
+    if (!track) {
+      return false;
+    }
+    var value;
+    if (typeof track.default === "boolean") {
+      value = track.default;
+    }
+    if (typeof track.default === "string") {
+      value = track.default.toLowerCase() === 'yes';
+    }
+    if (!value) {
+      var defaultValue = this.getDefaultValueByTrackName(track.name);
+      value = defaultValue.toLowerCase() === 'yes';
+    }
+    return value;
   }
 }
