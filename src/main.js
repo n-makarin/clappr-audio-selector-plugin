@@ -153,7 +153,7 @@ export default class LevelSelector extends UICorePlugin {
    * @returns void
    */
   setDefaultTrack() {
-    hls.audioTrack = this.current; 
+    this.core.getCurrentPlayback()._hls.audioTrack = this.current; 
   }
 
   /**

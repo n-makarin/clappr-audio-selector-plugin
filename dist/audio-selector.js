@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * @returns void
 	   */},{key:'setCurrentTrack',value:function setCurrentTrack(){this.current = this.getDefaultTrackIndex() || 0;} /**
 	   * @returns void
-	   */},{key:'setDefaultTrack',value:function setDefaultTrack(){hls.audioTrack = this.current;} /**
+	   */},{key:'setDefaultTrack',value:function setDefaultTrack(){this.core.getCurrentPlayback()._hls.audioTrack = this.current;} /**
 	   * @returns number
 	   */},{key:'getDefaultTrackIndex',value:function getDefaultTrackIndex(){var index=0;for(var i=0;i < this.tracks.length;i++) {if(this.isPositiveDefaultValue(this.tracks[i])){index = i;break;}}return index;} /**
 	   * @param {string} name 
