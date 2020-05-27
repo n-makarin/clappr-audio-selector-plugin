@@ -2,7 +2,7 @@ import {Events, Styler, UICorePlugin, template} from 'clappr'
 import pluginHtml from './public/level-selector.html'
 import pluginStyle from './public/style.scss'
 
-const AUTO = -1
+var LANG_CHANGED = false;
 
 export default class LevelSelector extends UICorePlugin {
 
@@ -10,6 +10,7 @@ export default class LevelSelector extends UICorePlugin {
 
   get name() { return 'audio_selector' }
   get template() { return template(pluginHtml) }
+
 
   get attributes() {
     return {
@@ -93,7 +94,7 @@ export default class LevelSelector extends UICorePlugin {
     var hls = this.core.getCurrentPlayback()._hls
     if (hls) {
       this.tracks = hls.audioTracks; 
-      this.setCurrentTrack();
+      this.setCurrentTrack(hls);
       this.setDefaultTrack();
     }
   }
@@ -148,8 +149,13 @@ export default class LevelSelector extends UICorePlugin {
   /**
    * @returns void
    */
-  setCurrentTrack() {
-    this.current = this.getDefaultTrackIndex() || 0;
+  setCurrentTrack(hls) {
+    if (LANG_CHANGED) {
+      this.current = hls.audioTrack;
+    } else {
+      this.current = this.getDefaultTrackIndex() || hls.audioTrack;
+      LANG_CHANGED = true;
+    }
   }
 
   /**
