@@ -1,18 +1,14 @@
 <button data-audio-selector-button></button>
 <ul>
-  <% var langList = []; %>
 
   <% for (var i = 0; i < tracks.length; i++) { %>    
-
     <% var track = tracks[i]; %>
-    <% var lang = track.name.split(' ')[0]; %> 
-    <% lang = lang ? lang.replace('"', '') : (track.lang || ''); %> 
     
-    <% if (track && lang && !langList.includes(lang) ) { %>  
+    <% if (track && track.name) { %>  
       <% langList.push(lang); %>
       <li>
         <a href="#" data-audio-selector-select="<%= i %>">
-          <%= lang %>
+          <%= track.name %>
         </a>
       </li>  
     <% }; %>
