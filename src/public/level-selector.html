@@ -7,7 +7,8 @@
     <% if (track && track.name) { %>  
       <li>
         <a href="#" data-audio-selector-select="<%= i %>">
-          <%= track.name %>
+          <% var name = track.name.slice(0, track.name.search('"')); %>
+          <%= name %>
         </a>
       </li>  
     <% }; %>
@@ -15,3 +16,7 @@
   <% }; %>
 
 </ul>
+
+
+var name = this.tracks[this.current].name
+this.buttonElement().text(name ? name.slice(0, name.search('"')) : '');

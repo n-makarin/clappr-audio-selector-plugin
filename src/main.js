@@ -129,7 +129,8 @@ export default class LevelSelector extends UICorePlugin {
    */
   updateText() {
     if (this.current !== null && this.tracks[this.current]) {
-      this.buttonElement().text(this.tracks[this.current].name);
+      var name = this.tracks[this.current].name
+      this.buttonElement().text(name ? name.slice(0, name.search('"')) : '');
     }
   }
 
